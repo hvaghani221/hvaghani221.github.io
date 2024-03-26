@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Agreement Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* To remove the increment/decrement arrows from input number */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield; /* Firefox */
+        }
+    </style>
+    <script src="calc.js"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+        <h1 class="text-xl font-bold mb-4">Rating Agreement Calculator</h1>
+        <div class="space-y-2">
+            <div class="flex items-center justify-between">
+                <div class="font-semibold">Ratings 1:</div>
+                <div class="flex space-x-2">
+                    <input type="number" id="trainerA" placeholder="A" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="trainerB" placeholder="B" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="trainerC" placeholder="C" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="trainerD" placeholder="D" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="font-semibold">Ratings 2:</div>
+                <div class="flex space-x-2">
+                    <input type="number" id="reviewerA" placeholder="A" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="reviewerB" placeholder="B" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="reviewerC" placeholder="C" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                    <input type="number" id="reviewerD" placeholder="D" class="block w-14 rounded-md border-gray-300 shadow-sm text-center" onchange="calculateAgreement()">
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 p-4 rounded border border-blue-300 bg-blue-100 text-sm text-gray-700">
+            <div id="results" class="font-medium">Agreement Rate: 0%</div>
+            <div id="alignment" class="font-medium">Alignment(1-7): 1</div>
+        </div>
+    </div>
+
+    <script>
+        calculateAgreement();
+    </script>
+</body>
+</html>
