@@ -16,50 +16,7 @@
             -moz-appearance: textfield; /* Firefox */
         }
     </style>
-    <script>
-                function calculateAgreement() {
-            // Get ratings
-            const trainerRatings = {
-                A: parseInt(document.getElementById('trainerA').value) || 0,
-                B: parseInt(document.getElementById('trainerB').value) || 0,
-                C: parseInt(document.getElementById('trainerC').value) || 0,
-                D: parseInt(document.getElementById('trainerD').value) || 0
-            };
-
-            const reviewerRatings = {
-                A: parseInt(document.getElementById('reviewerA').value) || 0,
-                B: parseInt(document.getElementById('reviewerB').value) || 0,
-                C: parseInt(document.getElementById('reviewerC').value) || 0,
-                D: parseInt(document.getElementById('reviewerD').value) || 0
-            };
-
-            let agreements = 0;
-            let comparisons = 0;
-            for (const key in trainerRatings) {
-                for (const innerKey in reviewerRatings) {
-                    if (innerKey > key) {
-                        comparisons++;
-                        const trainerComparison = trainerRatings[key] - trainerRatings[innerKey];
-                        const reviewerComparison = reviewerRatings[key] - reviewerRatings[innerKey];
-
-                        if ((trainerComparison === 0 && reviewerComparison === 0) ||
-                            (trainerComparison > 0 && reviewerComparison > 0) ||
-                            (trainerComparison < 0 && reviewerComparison < 0)) {
-                            agreements++;
-                        }
-                    }
-                }
-            }
-
-            // Calculate agreement rate
-            const agreementRate = comparisons > 0 ? (agreements / comparisons) * 100 : 0;
-            document.getElementById('results').innerText = 'Agreement Rate: ' + agreementRate.toFixed(2) + '%';
-
-            // Calculate alignment (1-7 scale) based on agreement rate
-            const alignment = agreementRate * (7 - 1) / 100 + 1;
-            document.getElementById('alignment').innerText = 'Alignment(1-7): ' + alignment.toFixed(2);
-        }
-    </script>
+    <script src="calc.js"></script>
 </head>
 <body class="bg-gray-100 p-8">
     <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
