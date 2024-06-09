@@ -64,17 +64,17 @@ function AGREEMENT_RATE(cell1, cell2) {
 
 function calculateAgreement() {
     const trainer = {
-        A: parseInt(document.getElementById('trainerA').value) || 0,
-        B: parseInt(document.getElementById('trainerB').value) || 0,
-        C: parseInt(document.getElementById('trainerC').value) || 0,
-        D: parseInt(document.getElementById('trainerD').value) || 0
+        A: parseInt(document.getElementById('trainerA').value) ,
+        B: parseInt(document.getElementById('trainerB').value) ,
+        C: parseInt(document.getElementById('trainerC').value) ,
+        D: parseInt(document.getElementById('trainerD').value) 
     };
 
     const reviewer = {
-        A: parseInt(document.getElementById('reviewerA').value) || 0,
-        B: parseInt(document.getElementById('reviewerB').value) || 0,
-        C: parseInt(document.getElementById('reviewerC').value) || 0,
-        D: parseInt(document.getElementById('reviewerD').value) || 0
+        A: parseInt(document.getElementById('reviewerA').value) ,
+        B: parseInt(document.getElementById('reviewerB').value) ,
+        C: parseInt(document.getElementById('reviewerC').value) ,
+        D: parseInt(document.getElementById('reviewerD').value) 
     };
 
     const cell1 = `A=${trainer.A} B=${trainer.B} C=${trainer.C} D=${trainer.D}`;
@@ -83,9 +83,19 @@ function calculateAgreement() {
     const rating = AGREEMENT_RATE(cell1, cell2);
     // Calculate agreement rate
     const agreementRate = rating * 100;
-    document.getElementById('results').innerText = 'Agreement Rate: ' + agreementRate.toFixed(2) + '%';
 
+
+
+    // document.getElementById('results').innerText = 'Agreement Rate: ' + agreementRate.toFixed(2) + '%';
     // Calculate alignment (1-7 scale) based on agreement rate
-    const alignment = agreementRate * (7 - 1) / 100 + 1;
+    const relativeRatings = agreementRate * (7 - 1) / 100 + 1;
+    const idealCompletion = parseInt(document.getElementById('ic').value) || 0;
+    const rubrics = parseInt(document.getElementById('rubrics').value) || 0;
+
+    const score = Math.pow(Math.sqrt(relativeRatings) + Math.sqrt(idealCompletion) + Math.sqrt(rubrics), 2);
+    const max_score = Math.pow(Math.sqrt(7) + Math.sqrt(7) + Math.sqrt(7), 2);
+
+    const alignment = (score / max_score) * 7;
+    
     document.getElementById('alignment').innerText = 'Alignment(1-7): ' + alignment.toFixed(2);
 }
