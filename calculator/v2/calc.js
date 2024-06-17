@@ -93,8 +93,8 @@ function calculateAgreement() {
   // document.getElementById('results').innerText = 'Agreement Rate: ' + agreementRate.toFixed(2) + '%';
   // Calculate alignment (1-7 scale) based on agreement rate
   const relativeRatings = agreementRate * (7 - 1) / 100 + 1;
-  const idealCompletion = parseInt(document.getElementById('ic').value) || 0;
-  const rubrics = parseInt(document.getElementById('rubrics').value) || 0;
+  const idealCompletion = parseFloat(document.getElementById('ic').value) || 0.0;
+  const rubrics = parseFloat(document.getElementById('rubrics').value) || 0.0;
 
   const score = Math.pow(Math.sqrt(relativeRatings) + Math.sqrt(idealCompletion) + Math.sqrt(rubrics), 2);
   const max_score = Math.pow(Math.sqrt(7) + Math.sqrt(7) + Math.sqrt(7), 2);
