@@ -88,11 +88,15 @@ function calculateAgreement() {
   // Calculate agreement rate
   const agreementRate = rating * 100;
 
-
-
   // document.getElementById('results').innerText = 'Agreement Rate: ' + agreementRate.toFixed(2) + '%';
   // Calculate alignment (1-7 scale) based on agreement rate
-  const relativeRatings = agreementRate * (7 - 1) / 100 + 1;
+  let relativeRatings = agreementRate * (7 - 1) / 100 + 1;
+  for (const [key, value] of Object.entries(trainer)) {
+    if ((value == 7 && reviewer[key] != 7) || (value != 7 && reviewer[key] == 7)) {
+      relativeRatings -= 0.3
+    }
+  }
+
   const idealCompletion = parseFloat(document.getElementById('ic').value) || 0.0;
   const rubrics = parseFloat(document.getElementById('rubrics').value) || 0.0;
 
